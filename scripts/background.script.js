@@ -1,5 +1,0 @@
-(()=>{
-  console.log("background script")
-})()
-  
-  
