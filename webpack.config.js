@@ -3,45 +3,50 @@ const TerserPlugin = require("terser-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const fs = require('fs');
 
 module.exports = {
-  entry: {
-    // "modal.content": "./scripts/modal.content.js",
-    // mainscript: "./scripts/main.script.js",
-    "research.content": "./scripts/research.content.js",
-    // popup: "./scripts/popup.js",
-    // background: "./scripts/background.js",
-    // content: "./scripts/content.js",
-    // listingAssistantContentScript: "./scripts/listingAssistantContentScript.js",
-    // howto: "./scripts/howto.js",
-    // settings: "./scripts/settings.js",
-  },
+  entry:{
+     // "scripts/content.script": "./src/dist/scripts/content.script.js",
+    // "scripts/background.script": "./src/dist/scripts/content.script.js",
+
+    ...fs.readdirSync('./src/dist/scripts').reduce((acc, file) => {
+      const name = path.basename(file, '.js');
+      acc[`scripts/${name}`] = `./src/dist/scripts/${file}`;
+      return acc;
+    }, {}),
+    ...fs.readdirSync('./src/dist/lib').reduce((acc, file) => {
+      const name = path.basename(file, '.js');
+      acc[`lib/${name}`] = `./src/dist/lib/${file}`;
+      return acc;
+    }, {}),
+  }, 
   output: {
-    filename: "dist/[name].bundle.js",
-    path: path.resolve(__dirname, "bundled-v2.0.12"),
+    filename: "dist/[name].js",
+    path: path.resolve(__dirname, "bundled-v0.0.1"),
   },
-  mode: "production", // Set the mode to production
+  mode: "production",
   plugins: [
-    // new CopyPlugin({
-    //   patterns: [
-    //     {
-    //       from: "html",
-    //       to: "html",
-    //     },
-    //   ],
-    // }),
     new CopyPlugin({
       patterns: [
         {
-          from: "styles/",
-          to: "styles",
+          from: "src/html",
+          to: "html",
         },
       ],
     }),
     new CopyPlugin({
       patterns: [
         {
-          from: "icons",
+          from: "src/css/",
+          to: "css",
+        },
+      ],
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: "src/icons",
           to: "icons",
         },
       ],
@@ -49,19 +54,11 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         {
-          from: "public",
-          to: "public",
+          from: "src/manifest.json",
+          to: "./manifest.json",
         },
       ],
     }),
-    // new CopyPlugin({
-    //   patterns: [
-    //     {
-    //       from: "manifest.json",
-    //       to: "./manifest.json",
-    //     },
-    //   ],
-    // }),
   ],
   optimization: {
     minimize: true,
