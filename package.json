@@ -4,9 +4,9 @@
   "license": "MIT",
   "dependencies": {},
   "scripts": {
-    "build": "./clean.sh && webpack --config webpack.config.js",
+    "build": "./clean.sh && tsc --build && webpack --config webpack.config.js",
     "build-vite": "vite build --mode production",
-    "start": "tsc --build --clean && tsc --watch"
+    "dev": "tsc --build --clean && tsc --watch"
   },
   "devDependencies": {
     "babel-loader": "^9.1.2",
