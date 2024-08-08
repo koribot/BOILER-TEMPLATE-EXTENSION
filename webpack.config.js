@@ -9,7 +9,6 @@ module.exports = {
   entry:{
      // "scripts/content.script": "./src/dist/scripts/content.script.js",
     // "scripts/background.script": "./src/dist/scripts/content.script.js",
-
     ...fs.readdirSync('./src/dist/scripts').reduce((acc, file) => {
       const name = path.basename(file, '.js');
       acc[`scripts/${name}`] = `./src/dist/scripts/${file}`;
