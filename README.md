@@ -10,7 +10,8 @@
          - content scripts
          - background scripts
          - popup scripts
-    - 📁 lib
+    - 📁 lib-js
+         - This is for already build 3rd party libraries in vanila javasript such as minified/uglified jquery, tailwind, and others
     - ⚙️ manifest.json
   
    ***You can make as much folder as you want you just need to configure `tsconfig.json`***

@@ -11,7 +11,10 @@
   "include": [
     "src/scripts/**/*.ts", 
     "src/scripts/**/*.js",
-    "src/lib/**/*.ts",
-    "src/lib/**/*.js"
+    "src/lib-js/**/*.ts",
+    "src/lib-js/**/*.js"
+  ],
+  "exclude": [
+    "src/lib-js/**/*.js"
   ]
 }
