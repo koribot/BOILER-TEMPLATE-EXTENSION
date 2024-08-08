@@ -15,11 +15,6 @@ module.exports = {
       acc[`scripts/${name}`] = `./src/dist/scripts/${file}`;
       return acc;
     }, {}),
-    ...fs.readdirSync('./src/dist/lib').reduce((acc, file) => {
-      const name = path.basename(file, '.js');
-      acc[`lib/${name}`] = `./src/dist/lib/${file}`;
-      return acc;
-    }, {}),
   }, 
   output: {
     filename: "dist/[name].js",
@@ -48,6 +43,14 @@ module.exports = {
         {
           from: "src/icons",
           to: "icons",
+        },
+      ],
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: "src/lib-js",
+          to: "lib-js",
         },
       ],
     }),
