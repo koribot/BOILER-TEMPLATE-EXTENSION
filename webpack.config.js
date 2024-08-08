@@ -23,7 +23,7 @@ module.exports = {
   }, 
   output: {
     filename: "dist/[name].js",
-    path: path.resolve(__dirname, "bundled-v0.0.1"),
+    path: path.resolve(__dirname, ".build-release"),
   },
   mode: "production",
   plugins: [
