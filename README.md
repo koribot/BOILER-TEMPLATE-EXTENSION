@@ -26,6 +26,7 @@
    - yarn install
  - yarn dev
    - The `outDir` of `tsc` is in `dist` folder inside src
+   - Hot reload ready
  
  - Go to [chrome://extensions/](url) and Enable Developer mode 
    - Click ***`Load unpacked`*** and load `"your project directory"/src` 
@@ -39,10 +40,10 @@
 
     [chrome://extensions/](url)
     ***
-## ENABLE HOT RELOAD (`yarn dev` has hot reload enabled already)
+## HOT RELOAD (`yarn dev` has hot reload enabled already)
 ***
  This is helpful if you dont want to manually reload the extension everytime there are changes on your file
-  However the manifest.json is not included when changes on manifest.json ocurred you need to manually reload it (feel free to contribue if you know how to do it)
+  However the manifest.json is not included when changes on manifest.json ocurred you need to manually reload it ***(feel free to contribue if you know how to do it)***
 ***
 - COMMAND
    - `yarn hr` or you can just simply run it via node -> `node hot-reload.js`
