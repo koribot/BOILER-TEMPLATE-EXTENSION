@@ -39,7 +39,7 @@
 
     [chrome://extensions/](url)
     ***
-## ENABLE HOT RELOAD
+## ENABLE HOT RELOAD (`yarn dev` has hot reload enabled already)
 ***
  This is helpful if you dont want to manually reload the extension everytime there are changes on your file
   However the manifest.json is not included when changes on manifest.json ocurred you need to manually reload it (feel free to contribue if you know how to do it)
