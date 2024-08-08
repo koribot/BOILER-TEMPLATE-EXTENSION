@@ -18,7 +18,7 @@
 ## HOW TO RUN
  - Install Dev Depencies
    - yarn install
- - yarn start or `tsc --watch`
+ - yarn dev
    - The `outDir` of `tsc` is in `dist` folder inside src
  
  - Go to [chrome://extensions/](url) and Enable Developer mode 
