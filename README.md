@@ -6,7 +6,8 @@
        - This is where the compiled typescript goes in
     - 📁 html
        - all the static html of your extension
-          - popups
+          - popup.html
+          - ....
     - 📁 scripts
        - all your scripts
          - content scripts
@@ -15,7 +16,11 @@
     - 📁 lib-js
          - This is for already build 3rd party libraries in vanila javasript such as minified/uglified jquery, tailwind, and others
          - I suggest do not put any `.ts` files on this folder as it is ignored by typescript only put "optimized" version of `.js` file here
-    - ⚙️ manifest.json
+    - 📁 utils/socket.js 
+        - This is for development, it connects hot-reload.js to background script via webs socket
+        - This will not be included when you build your project, but any import statement using that uses `socket.js` will need to be commented when you build to production
+    
+- ⚙️ manifest.json
        - Without this the project wont load on browser, lastest version is manifest v3
        - check [https://developer.chrome.com/docs/extensions/reference/manifest](url)
   
@@ -25,34 +30,26 @@
  - Install Dev Depencies
    - yarn install
  - yarn dev
-   - The `outDir` of `tsc` is in `dist` folder inside src
-   - Hot reload ready
- 
- - Go to [chrome://extensions/](url) and Enable Developer mode 
+   - `.dev-build` will be created, use this one to `load unpacked` on the browser
+   - Hot reload ready using websocket
+ - Go to [chrome]("chrome://extensions/") and Enable Developer mode 
    - Click ***`Load unpacked`*** and load `"your project directory"/src` 
   
 
     ***
-    YOU NEED TO RELOAD THE EXTENSION IF YOU WANT TO SEE THE CHANGES IN BROWSER
+    YOU NEED TO MANUALLY RELOAD IT FIRST TO ESTABLISH ***`WS`*** CONNECTION (WORKING ON THIS ONE SO YOU WONT NEED TO MANUALLY RELOAD AT FIRST)
+ 
     
 
-    NOTE: YOU NEED TO ENABLE ***`DEVELOPER MODE`*** FIRST
+    YOU ALSO NEED TO ENABLE ***`DEVELOPER MODE`*** FIRST
 
     [chrome://extensions/](url)
     ***
-## HOT RELOAD (`yarn dev` has hot reload enabled already)
-***
- This is helpful if you dont want to manually reload the extension everytime there are changes on your file
-  However the manifest.json is not included when changes on manifest.json ocurred you need to manually reload it ***(feel free to contribue if you know how to do it)***
-***
-- COMMAND
-   - `yarn hr` or you can just simply run it via node -> `node hot-reload.js`
-      ***
-        ***NOTE: YOU NEED TO PROVIDE THE EXTENSION ID ON YOUR ENV***
-      ***
+
 ## BUILD FOR PRODUCTION
  - yarn build
-   - This uses webpack you can configure it in ***`webpack.config.js`***
+   - This uses webpack you can configure it in ***`webpack/webpack.common.config.js`*** and ***`webpack/webpack.prod.js`***
  - yarn build-vite
-   - This uses vite but there is problem with copying of the folders, ***`vite.cofig.js`***
+   - This uses vite but there is problem with copying of the folders, ***`vite.cofig.js`*** 🚧
+      - refer to [issue #1 - vite](https://github.com/koribot/BTE/issues/1)
   

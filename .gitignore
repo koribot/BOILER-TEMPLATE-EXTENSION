@@ -2,3 +2,5 @@ node_modules
 dist
 bundled-v0.0.1
 .build-release
+.dev-build
+.production-build

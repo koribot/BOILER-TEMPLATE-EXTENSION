@@ -1,2 +1,2 @@
-console.log("content scripts")
+console.log("walid cawassa")
 

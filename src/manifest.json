@@ -24,11 +24,11 @@
   "content_scripts":[
     {
       "matches": ["<all_urls>"],
-      "js": ["dist/scripts/content.script.js"]
+      "js": ["dist/scripts/content.script.ts.js"]
     }
   ],
   "background": {
-      "service_worker": "dist/scripts/background.script.js"
+      "service_worker": "dist/scripts/background.script.ts.js"
   },
   "host_permissions": [
 
