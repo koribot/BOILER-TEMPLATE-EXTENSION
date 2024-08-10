@@ -2,8 +2,10 @@
  - The folder structure is un-opinionated, I just arrange the folder base on my likings
     - 📁 css
        - all styles css
-    - 📁 dist
-       - This is where the compiled typescript goes in
+    - 📁 .dist-build
+       - This Is Where The Compiled Typescript, And Files Goes In
+    - 📁 .production-build
+       - production ready using webpack, does not include `zipped` version
     - 📁 html
        - all the static html of your extension
           - popup.html
