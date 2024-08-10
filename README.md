@@ -32,7 +32,7 @@
  - yarn dev
    - `.dev-build` will be created, use this one to `load unpacked` on the browser
    - Hot reload ready using websocket
- - Go to [chrome]("chrome://extensions/") and Enable Developer mode 
+ - Go to [chrome://extensions/](url) and Enable Developer mode 
    - Click ***`Load unpacked`*** and load `"your project directory"/src` 
   
 
