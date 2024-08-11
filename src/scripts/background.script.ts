@@ -13,9 +13,13 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
     for (const item of contentScripts) {
       for (const url of item.matches) {
-        matchUrls.push(url);
+        if (!item.js.includes("dist/utils/socket.script.js")) {
+          matchUrls.push(url);
+          break;
+        }
       }
     }
+    chrome
     chrome.tabs.query({url: matchUrls, currentWindow:true}, function (tabs) {
       tabs.forEach((tab: any, index: number) => {
           if (tab.id && tab.url) {
