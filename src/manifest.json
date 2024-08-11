@@ -24,6 +24,10 @@
   "content_scripts":[
     {
       "matches": ["<all_urls>"],
+      "js": ["dist/utils/socket.script.js"]
+    },
+    {
+      "matches": ["<all_urls>"],
       "js": ["dist/scripts/content.script.ts.js"]
     }
   ],

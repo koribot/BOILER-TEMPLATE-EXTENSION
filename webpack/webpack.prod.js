@@ -14,7 +14,7 @@ module.exports = merge(webpackCommon, {
     }, {}),
     ...fs.readdirSync('./src/utils').reduce((acc, file) => {
       const name = path.basename(file, '.js');
-      if (name !== 'socket') {
+      if (name !== 'socket.script') {
         acc[`utils/${name}`] = `./src/utils/${file}`;
       }
       return acc;
