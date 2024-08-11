@@ -1,3 +1,19 @@
+# BTE - BOILER TEMPALTE FOR BUILDING EXTENSION
+
+
+## FEATURES
+ - Hot-reload 
+   - it does not preserve state it uses:
+     - `chrome.runtime.reload` and `chrome.tabs.reload`
+     - websocket
+        - hot-reload.js
+        - socket.script.js
+ - Typescript
+ - Webpack builder
+ - Tailwind `postcss`
+
+
+
 ## FOLDER STRUCTURE
  - The folder structure is un-opinionated, I just arrange the folder base on my likings
     - 📁 css
@@ -18,9 +34,9 @@
     - 📁 lib-js
          - This is for already build 3rd party libraries in vanila javasript such as minified/uglified jquery, tailwind, and others
          - I suggest do not put any `.ts` files on this folder as it is ignored by typescript only put "optimized" version of `.js` file here
-    - 📁 utils/socket.js 
-        - This is for development, it connects hot-reload.js to background script via webs socket
-        - This will not be included when you build your project, but any import statement using that uses `socket.js` will need to be commented when you build to production
+    - 📁 utils/socket.script.js 
+        - This is for development, it connects hot-reload.js to socket.script.js via websocket then socket.script.js communicate with background script to do ***`chrome.runtime.reload`*** and ***`chrome.tabs.reload`***
+        - This will not be included when you build your project
     
 - ⚙️ manifest.json
        - Without this the project wont load on browser, lastest version is manifest v3
@@ -51,6 +67,26 @@
 ## BUILD FOR PRODUCTION
  - yarn build
    - This uses webpack you can configure it in ***`webpack/webpack.common.config.js`*** and ***`webpack/webpack.prod.js`***
+    -You need to commment several codes when you run build:
+    
+    - You need to comment several codes before running `yarn build` as all this code is for development purpose only
+      - at background.script.ts
+         ```
+        >chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+        >  /***COMMENT THIS LINES OF CODES WHEN YOU BUILD THE PROJECT FOR PRODUCTION SO IT WILL NOT BE INCLUDED*/
+        > if (request.type === "reload") {
+        >  }
+        > /************************************************************************/
+        >});
+        ```
+      - at manifest.json
+        ```
+          {
+          "matches": ["<all_urls>"],
+          "js": ["dist/utils/socket.script.js"]
+          },
+        ```
+
  - yarn build-vite
    - This uses vite but there is problem with copying of the folders, ***`vite.cofig.js`*** 🚧
       - refer to [issue #1 - vite](https://github.com/koribot/BTE/issues/1)
