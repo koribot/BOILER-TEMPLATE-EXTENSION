@@ -27,7 +27,7 @@ module.exports = {
         extensions: [".ts", ".ts", ".js"],
     },
     plugins: [
-      new CopyPlugin({
+      fs.existsSync("src/html") && fs.readdirSync("src/html").length > 0 && new CopyPlugin({
         patterns: [
           {
             from: "src/html",
@@ -35,7 +35,7 @@ module.exports = {
           },
         ],
       }),
-      new CopyPlugin({
+      fs.existsSync("src/css/") && fs.readdirSync("src/css/").length > 0 && new CopyPlugin({
         patterns: [
           {
             from: "src/css/",
@@ -43,7 +43,7 @@ module.exports = {
           },
         ],
       }),
-      new CopyPlugin({
+      fs.existsSync("src/icons") && fs.readdirSync("src/icons").length > 0 && new CopyPlugin({
         patterns: [
           {
             from: "src/icons",
@@ -51,7 +51,7 @@ module.exports = {
           },
         ],
       }),
-      new CopyPlugin({
+      fs.existsSync("src/lib-js") && fs.readdirSync("src/lib-js").length > 0 && new CopyPlugin({
         patterns: [
           {
             from: "src/lib-js",
